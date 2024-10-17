@@ -148,7 +148,7 @@ function sendMessageToWhatsapp(event) {
     event.preventDefault();
     const nama = document.getElementById("nama").value;
     const pesan = document.getElementById("pesan").value;
-    const whatsappNumber = "628123456789";
+    const whatsappNumber = "628564512879";
     const url = `https://wa.me/${whatsappNumber}?text=Nama: ${nama}%0APesan: ${pesan}`;
     window.open(url, '_blank');
     modal.style.display = "none";
