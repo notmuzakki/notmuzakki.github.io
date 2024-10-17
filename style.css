@@ -427,3 +427,12 @@ section {
 #whatsapp-popup button {
     align-self: flex-start;
 }
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-top: 50px;
+}
