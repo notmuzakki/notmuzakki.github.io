@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            alert(`Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
+            alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
         }
     }
 
@@ -124,32 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// Fungsi untuk popup WhatsApp
-const modal = document.getElementById("whatsapp-popup");
-const btn = document.getElementById("whatsapp-button");
-const span = document.getElementsByClassName("close")[0];
-
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+// Form Contact
+const contactForm = document.getElementById('contact-form');
+    
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const sendOption = document.querySelector('input[name="send-option"]:checked').value;
+    
+    if (sendOption === 'whatsapp') {
+        const whatsappNumber = "6285645128794"; // Ganti dengan nomor WhatsApp Anda
+        const whatsappMessage = `Nama: ${name}%0AEmail: ${email}%0APesan: ${message}`;
+        window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+    } else {
+        const mailtoLink = `mailto:amigodd0@gmail.com?subject=Pesan dari ${name}&body=Nama: ${name}%0AEmail: ${email}%0A%0APesan:%0A${message}`;
+        window.location.href = mailtoLink;
     }
-}
-
-function sendMessageToWhatsapp(event) {
-    event.preventDefault();
-    const nama = document.getElementById("nama").value;
-    const pesan = document.getElementById("pesan").value;
-    const whatsappNumber = "6285645128794";
-    const url = `https://wa.me/${whatsappNumber}?text=Nama: ${nama}%0APesan: ${pesan}`;
-    window.open(url, '_blank');
-    modal.style.display = "none";
-}
+    
+    contactForm.reset();
+});
