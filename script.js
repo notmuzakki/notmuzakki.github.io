@@ -16,14 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let typingDelay = 200;
 
     function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            window.location.href = '503.html';
-            alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
-        }
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+        section.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    } else {
+        alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
+        window.location.href = '503.html'; 
     }
+}
 
     function setActiveNavItem() {
         const scrollPosition = window.scrollY;
