@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            window.location.href = '404.html';
+            window.location.href = '503.html';
             alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
         }
     }
@@ -127,7 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // Form Contact
 const contactForm = document.getElementById('contact-form');
-    
+
+function isValidEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
+
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -136,16 +141,17 @@ contactForm.addEventListener('submit', (e) => {
     const message = document.getElementById('message').value;
     const sendOption = document.querySelector('input[name="send-option"]:checked').value;
     
-    if (!isValidEmail(email)) {
-        alert('Silakan masukkan alamat email yang valid.');
-        return; 
-    }
+    
 
-    if (sendOption === 'whatsapp') {
-        const whatsappNumber = "6285645128794"; // Ganti dengan nomor WhatsApp Anda
-        const whatsappMessage = `Nama: ${name}%0AEmail: ${email}%0APesan: ${message}`;
+     if (sendOption === 'whatsapp') {
+        const whatsappNumber = "6285645128794";
+        const whatsappMessage = `Nama: ${name}%0A${email ? 'Email: ' + email + '%0A' : ''}Pesan: ${message}`;
         window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
     } else {
+        if (!isValidEmail(email)) {
+            alert('Silakan masukkan alamat email yang valid.');
+            return; 
+        }
         const mailtoLink = `mailto:amigodd0@gmail.com?subject=Pesan dari ${name}&body=Nama: ${name}%0AEmail: ${email}%0A%0APesan:%0A${message}`;
         window.location.href = mailtoLink;
     }
@@ -153,8 +159,3 @@ contactForm.addEventListener('submit', (e) => {
     
     contactForm.reset();
 });
-
-function isValidEmail(email) {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-}
