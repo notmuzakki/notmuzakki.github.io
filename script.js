@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else {
         alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
-        window.location.href = '503.html'; 
     }
 }
 
