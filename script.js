@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         } else {
+            window.location.href = '404.html';
             alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
         }
     }
@@ -135,6 +136,11 @@ contactForm.addEventListener('submit', (e) => {
     const message = document.getElementById('message').value;
     const sendOption = document.querySelector('input[name="send-option"]:checked').value;
     
+    if (!isValidEmail(email)) {
+        alert('Silakan masukkan alamat email yang valid.');
+        return; 
+    }
+
     if (sendOption === 'whatsapp') {
         const whatsappNumber = "6285645128794"; // Ganti dengan nomor WhatsApp Anda
         const whatsappMessage = `Nama: ${name}%0AEmail: ${email}%0APesan: ${message}`;
@@ -144,5 +150,11 @@ contactForm.addEventListener('submit', (e) => {
         window.location.href = mailtoLink;
     }
     
+    
     contactForm.reset();
 });
+
+function isValidEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
