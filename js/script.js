@@ -15,12 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDeleting = false;
     let typingDelay = 200;
 
+    function showModal(message) {
+        const modal = document.getElementById('customModal');
+        const modalMessage = document.getElementById('modalMessage');
+        modalMessage.textContent = message;
+        modal.style.display = 'block';
+        
+        // Menutup modal dengan klik tombol close
+        const closeButton = modal.querySelector('.close-button');
+        closeButton.onclick = function() {
+            modal.style.display = 'none';
+        }
+        
+        // Menutup modal dengan klik tombol Kembali
+        const modalButton = modal.querySelector('.modal-button');
+        modalButton.onclick = function() {
+            modal.style.display = 'none';
+        }
+        
+        // Menutup modal dengan klik di luar modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    }
+    
     function scrollToSection(sectionId) {
         const section = document.getElementById(sectionId);
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
+            showModal(`Section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
         }
     }
 
