@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon"
         href="https://4.bp.blogspot.com/-gyXTeoYfZYU/WLGzd5IbNEI/AAAAAAAAAgI/7yE1wnuMN4ssfET4BA4GIq18k6xTETuEQCLcB/s1600/logo%2B3.png">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Portfolio Website</title>
 </head>
 
@@ -29,7 +29,7 @@
     <main>
         <section id="home" class="section home">
             <div class="home-img">
-                <img src="https://od.lk/s/NV8xOTk2ODA3MzJf/1.jpg" alt="Foto Muzakki" loading="lazy"/>
+                <img src="1.jpg" alt="Foto Muzakki" loading="lazy"/>
             </div>
             <div class="home-content">
                 <h1>Hi, It's Muzakki</h1>
@@ -160,7 +160,15 @@
                 <button type="submit" class="btn">Kirim Pesan</button>
             </form>
         </section>
-
+        <div id="customModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <div class="modal-icon">⚠️</div>
+                <h2>Mohon Maaf</h2>
+                <p id="modalMessage"></p>
+                <button class="modal-button">Kembali</button>
+            </div>
+        </div>
         <footer>
             <p>&copy; 2024 Muzakki. All rights reserved.</p>
         </footer>
