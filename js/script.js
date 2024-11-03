@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            window.location.href = '/503.html';
             alert(`Mohon Maaf, section "${sectionId}" belum tersedia saat ini. Kami sedang dalam proses pengembangan.`);
         }
     }
