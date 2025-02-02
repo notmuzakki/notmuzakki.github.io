@@ -15,6 +15,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDeleting = false;
     let typingDelay = 200;
 
+   // Grab the theme toggle element
+const themeToggle = document.getElementById('theme-toggle');
+const icons = themeToggle.querySelectorAll('ion-icon');
+
+// Restore saved theme on load
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+// Add event listener for theme toggle
+themeToggle.addEventListener('click', () => {
+    // Add animation to icons
+    icons.forEach((icon) => {
+        if (!icon.classList.contains('icon-animate')) {
+            icon.classList.add('icon-animate');
+
+            icon.addEventListener('animationend', () => {
+                icon.classList.remove('icon-animate');
+            }, { once: true });
+        }
+    });
+
+    // Toggle the theme
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+
+    // Save the theme to localStorage
+    localStorage.setItem('theme', newTheme);
+});
+
+
     function showModal(message) {
         const modal = document.getElementById('customModal');
         const modalMessage = document.getElementById('modalMessage');
@@ -89,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
-            typingDelay = 200;
+            typingDelay = 500;
         }
 
         setTimeout(typeText, isDeleting ? 100 : typingDelay);
