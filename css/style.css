@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 :root {
-    --primary-color: #1E90FF;
+    --primary-color: #ffffff;
     --background-color: #0f0f0f;
-    --text-color: #ffffff;
+    --text-color: #d8d8d8;
+    --secondary-color: #888;
+    --box-color: rgb(0, 0, 0, 0.8);
+    --header-color: rgba(255, 255, 255, 0.195);
+    --transition: 0.3s ease;
+}
+
+[data-theme="light"] {
+    --primary-color: #080808;
+    --background-color: #F8F9FA;
+    --text-color: #050505;
+    --secondary-color: #888;
+    --box-color: rgba(255, 255, 255, 0.8);
+    --header-color: rgba(0, 0, 0, 0.195);
     --transition: 0.3s ease;
 }
 
@@ -30,6 +43,7 @@ body {
     overflow-x: hidden;
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
 }
 
 header {
@@ -37,12 +51,19 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 9%;
-    background-color: rgba(15, 15, 15, 0.9);
+    padding: 1rem 9%;
+    background-color: var(--background-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    box-shadow: 0 4px 6px var(--header-color);
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Jarak antara tombol tema dan menu */
 }
 
 .logo {
@@ -71,16 +92,13 @@ header {
 
     nav {
         display: none;
-    }
-
-    nav.active {
-        display: block;
+        padding: 1rem 0;
+        text-align: center;
     }
 }
 
-
 nav a {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
@@ -90,14 +108,73 @@ nav a {
 
 nav a:hover,
 nav a.active {
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 5px;
 }
 
 section {
     min-height: 100vh;
     padding: 10rem 9% 5rem;
+    padding-top: 1rem;
 }
+
+@media (max-width: 768px) {
+    section {
+        padding-top: 1rem; 
+        scroll-margin-top: 6rem
+    }
+
+    header {
+        padding: 2rem 4%; 
+    }
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle ion-icon {
+    position: absolute;
+    font-size: 2.5rem;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes rotateAndScaleIcon {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(360deg) scale(0);
+    }
+}
+
+.icon-animate {
+    animation: rotateAndScaleIcon 0.5s ease-out forwards;
+}
+
+.icon-light {
+    opacity: 1;
+}
+
+.icon-dark {
+    opacity: 0;
+}
+
+[data-theme="light"] .icon-light {
+    opacity: 0;
+}
+
+[data-theme="light"] .icon-dark {
+    opacity: 1;
+}
+
 
 .home, .skills, .services, .education, .experience, .contact {
     background-color: var(--background-color);
@@ -138,10 +215,17 @@ section {
     box-shadow: 0 0 25px var(--primary-color);
     cursor: pointer;
     transition: var(--transition);
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .home-img img:hover {
     transform: scale(1.05);
+}
+
+.home-img img:focus {
+    outline: none;
 }
 
 .social-icons a {
@@ -194,7 +278,7 @@ section {
 }
 
 .skills {
-    padding-top: 7rem;
+    padding-top: 10rem;
 }
 
 .skills h2 {
@@ -226,7 +310,7 @@ section {
     display: block;
     height: 1rem;
     width: 100%;
-    background-color: #333;
+    background-color: var(--text-color);
     border-radius: 0.5rem;
     overflow: hidden;
 }
@@ -384,7 +468,7 @@ section {
 
 .education-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 195, 255, 0.462);
+    box-shadow: 0 6px 12px var(--secondary-color);
 }
 
 .education-content h3 {
@@ -420,17 +504,13 @@ section {
 }
 
 @media (max-width: 768px) {
-    #education {
-        padding: 3rem 0;
-    }
-
     #education h2 {
         font-size: 2.5rem;
     }
 
     .education-item {
         padding: 1.5rem;
-        flex-direction: column; /* Mengubah arah flex menjadi kolom */
+        flex-direction: column;
         align-items: center; 
     }
 
@@ -497,7 +577,7 @@ section {
 
 .experience-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 195, 255, 0.3);
+    box-shadow: 0 6px 12px var(--secondary-color);
 }
 
 .experience-item h3 {
@@ -519,7 +599,7 @@ section {
 
 .experience-item li {
     font-size: 1.4rem;
-    color: #888;
+    color: var(--secondary-color);
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 20px;
@@ -534,10 +614,6 @@ section {
 }
 
 @media (max-width: 768px) {
-    #experience {
-        padding: 3rem 0;
-    }
-
     #experience h2 {
         font-size: 2.5rem;
     }
@@ -560,17 +636,23 @@ section {
     }
 }
 
-.contact h2 {
+#contact {
+    padding: 10rem 9% 5rem;
+    background-color: var(--background-color);
+}
+
+#contact h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-align: center;
 }
 
-.contact p {
+#contact p {
     font-size: 1.6rem;
     margin-bottom: 3rem;
     text-align: center;
 }
+
 .contact-form {
     max-width: 500px;
     margin: 0 auto;
@@ -584,7 +666,7 @@ section {
     width: 100%;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--background-color);
     border: 1px solid var(--primary-color);
     color: var(--text-color);
     font-size: 1.6rem;
@@ -617,13 +699,13 @@ section {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(35, 27, 250, 0.2);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--secondary-color);
 }
+
 
 .close {
     color: #aaa;
@@ -654,7 +736,7 @@ section {
 }
 
 .modal-content {
-    background-color: #1a1a1a;
+    background-color: var(--box-color);
     margin: 15% auto;
     padding: 2.5rem;
     border-radius: 1rem;
@@ -663,8 +745,7 @@ section {
     text-align: center;
     position: relative;
     animation: slideIn 0.3s;
-    border: 1px solid var(--primary-color);
-    box-shadow: 0 0 25px rgba(30, 144, 255, 0.2);
+    border: 1.5px solid var(--primary-color);
 }
 
 .modal-icon {
@@ -693,7 +774,7 @@ section {
 }
 
 .modal p {
-    color: #888;
+    color: var(--text-color);
     margin-bottom: 2rem;
     font-size: 1.6rem;
     line-height: 1.5;
