@@ -120,12 +120,15 @@ section {
 
 @media (max-width: 768px) {
     section {
-        padding-top: 1rem; 
         scroll-margin-top: 6rem
     }
 
     header {
         padding: 2rem 4%; 
+    }
+
+    .home-content{
+        padding-top: 2rem; 
     }
 }
 
