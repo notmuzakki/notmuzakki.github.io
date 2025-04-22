@@ -126,16 +126,6 @@ themeToggle.addEventListener('click', () => {
         setTimeout(typeText, isDeleting ? 100 : typingDelay);
     }
 
-    typeText();
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const sectionId = link.getAttribute('data-section');
-            scrollToSection(sectionId);
-        });
-    });
-
     window.addEventListener('scroll', setActiveNavItem);
 
     const observer = new IntersectionObserver((entries) => {
@@ -173,7 +163,12 @@ themeToggle.addEventListener('click', () => {
 
     // Close mobile menu when a link is clicked
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = link.getAttribute('data-section');
+            scrollToSection(sectionId);
+    
+            // Tutup menu di tampilan mobile
             if (menuIcon && navbar) {
                 menuIcon.classList.remove('bx-x');
                 navbar.classList.remove('active');
