@@ -30,7 +30,7 @@
 
 ### 🤝 Ayo Gabung!
 📌 Jadilah bagian dari **Pemuda Nginfo** dan bergerak bersama menuju kebaikan.  
-📫 Hubungi kami via Instagram: [@pemudanginfo](https://instagram.com/pemudanginfo)
+📫 Hubungi kami via Instagram: <a href="https://instagram.com/pemudanginfo" target="_blank">@pemudanginfo</a>
 
 ---
 
