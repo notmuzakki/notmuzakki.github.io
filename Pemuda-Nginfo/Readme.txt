@@ -24,6 +24,6 @@ Kami hadir untuk:
 📫 Kontak: @pemudanginfo
 
 <p align="center">
-  <img src="https://github.com/notmuzakki/notmuzakki.github.io/blob/main/Pemuda-Nginfo/assets/img/icon.jpg" width="200" alt="Logo Pemuda Nginfo"/>
+  <img src="https://raw.githubusercontent.com/notmuzakki/notmuzakki.github.io/main/Pemuda-Nginfo/assets/img/icon.jpg" width="200" alt="Logo Pemuda Nginfo"/>
 </p>
 
