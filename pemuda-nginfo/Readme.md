@@ -35,7 +35,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notmuzakki/notmuzakki.github.io/main/Pemuda-Nginfo/assets/img/icon.jpg" width="200" alt="Logo Pemuda Nginfo"/>
+  <img src="https://raw.githubusercontent.com/notmuzakki/notmuzakki.github.io/main/pemuda-nginfo/assets/img/icon.jpg" width="200" alt="Logo Pemuda Nginfo"/>
 </p>
 
 <p align="center">
