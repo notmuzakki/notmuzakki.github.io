@@ -159,7 +159,7 @@
 const teamSwiper = new Swiper('.team-slider', {
   slidesPerView: 1,
   spaceBetween: 20,
-  loop: true,
+  loop: false,
   grabCursor: true,
   autoHeight: true, // ✅ PENTING untuk tinggi dinamis!
   pagination: { el: '.swiper-pagination', clickable: true },
@@ -211,20 +211,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Expandable deskripsi anggota (mobile only)
  document.querySelectorAll('.team-member').forEach(member => {
-    const toggleBtn = member.querySelector('.toggle-more');
-    if (!toggleBtn) return;
+  const toggleBtn = member.querySelector('.toggle-more');
+  if (!toggleBtn) return;
 
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
 
-      if (window.innerWidth <= 768) {
-        member.classList.toggle('active');
+    if (window.innerWidth <= 768) {
+      member.classList.toggle('active');
 
-        // ✅ Update tinggi swiper setelah expand/collapse
-        if (typeof teamSwiper !== 'undefined') {
-          teamSwiper.updateAutoHeight();
-        }
+      // Update ARIA
+      toggleBtn.setAttribute('aria-expanded', member.classList.contains('active'));
+
+      // Update tinggi Swiper
+      if (typeof teamSwiper !== 'undefined') {
+        const activeIndex = teamSwiper.activeIndex;
+
+  // Ulangi setActiveIndex untuk memicu internal resize
+  setTimeout(() => {
+    teamSwiper.slideTo(activeIndex, 0); // ⬅️ memicu perhitungan ulang tinggi
+    teamSwiper.updateAutoHeight();
+    teamSwiper.update();
+  }, 50);
       }
-    });
+    }
   });
+});
 });
