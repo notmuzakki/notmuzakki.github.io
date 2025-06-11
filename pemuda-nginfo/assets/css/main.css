@@ -2198,7 +2198,7 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Team Section
+# Team Section (Gabungan Tampilan Lama + Fitur Lihat Selengkapnya)
 --------------------------------------------------------------*/
 
 .team .team-slider .swiper-wrapper {
@@ -2221,6 +2221,7 @@ section,
   transition: 0.3s ease-in-out;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   width: 100%;
+  position: relative;
 }
 
 .team .team-member:hover {
@@ -2266,15 +2267,19 @@ section,
   display: block;
 }
 
-.team .team-member .member-info p {
+/* Deskripsi default tampil penuh (untuk desktop) */
+.member-desc {
   font-size: 0.95rem;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: block;
+  overflow: visible;
+}
+
+/* Tombol toggle disembunyikan default (hanya muncul di mobile) */
+.toggle-more {
+  display: none;
 }
 
 .team .team-member .member-info .social {
@@ -2302,33 +2307,80 @@ section,
   background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
 }
 
-/* Responsive */
-@media (max-width: 767px) {
+/* Responsive Mobile */
+@media (max-width: 768px) {
   .team .team-member {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    text-align: left;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
   }
 
   .team .team-member .member-img {
-    width: 100%;
-    height: 250px;
+    width: 195px;
+    border-radius: 8px;
     overflow: hidden;
   }
 
-  .team .team-member .member-img img {
-    border-radius: 8px 8px 0 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  .team .team-member .member-info {
+    padding: 15px;
   }
 
-  .team .team-member .member-info {
-    padding: 20px;
+  .team .team-member .member-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .team .team-member .member-info span {
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
   }
 
   .team .team-member .member-info .social {
-    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .team .team-member .member-info .social a {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  /* Potong deskripsi di mobile */
+  .member-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .team-member.active .member-desc {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* Tombol toggle */
+  .toggle-more {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .toggle-more::after {
+    content: "Lihat selengkapnya";
+  }
+
+  .team-member.active .toggle-more::after {
+    content: "Tutup";
   }
 }
 
@@ -2561,6 +2613,57 @@ section,
 
   .contact .map-section {
     height: 400px;
+  }
+}
+
+
+/* Section Lokasi */
+.lokasi {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.lokasi .section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fcd34d; /* kuning muda, cocok dengan tombol "Gabung" */
+  margin-bottom: 10px;
+}
+
+.lokasi .section-title p {
+  font-size: 18px;
+  color: #cccccc;
+}
+
+#mapContainer {
+  margin-top: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#toggleMapBtn {
+  background-color: transparent;
+  color: #fcd34d;
+  border: 2px solid #fcd34d;
+  transition: 0.3s ease;
+}
+
+#toggleMapBtn:hover {
+  background-color: #fcd34d;
+  color: #121212;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+  #mapContainer iframe {
+    height: 300px;
   }
 }
 
@@ -2910,6 +3013,10 @@ section,
     text-align: center;
   }
 }
+
+ .custom-text-color {
+    color: #f5f5f5 !important; /* Ungu Bootstrap */
+  }
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
