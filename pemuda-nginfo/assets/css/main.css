@@ -2210,6 +2210,27 @@ section,
   height: auto;
 }
 
+.team .team-slider {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.team .swiper {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.team .swiper-wrapper {
+  align-items: stretch;
+  height: auto !important;
+}
+
+.team .swiper-slide {
+  display: flex !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
 .team .team-member {
   display: flex;
   flex-direction: row;
@@ -2309,6 +2330,7 @@ section,
 
 /* Responsive Mobile */
 @media (max-width: 768px) {
+  
   .team .team-member {
     flex-direction: row;
     text-align: left;
@@ -2351,17 +2373,19 @@ section,
 
   /* Potong deskripsi di mobile */
   .member-desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  max-height: 4.5em; /* kira-kira 3 baris */
+}
 
-  .team-member.active .member-desc {
-    -webkit-line-clamp: unset;
-    overflow: visible;
-  }
+.team-member.active .member-desc {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  max-height: 1000px; /* cukup besar agar semua baris terlihat */
+}
 
   /* Tombol toggle */
   .toggle-more {
@@ -3012,14 +3036,4 @@ section,
     width: 100%;
     text-align: center;
   }
-}
-
- .custom-text-color {
-    color: #f5f5f5 !important; /* Ungu Bootstrap */
-  }
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }
