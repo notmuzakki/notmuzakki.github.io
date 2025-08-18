@@ -2374,7 +2374,6 @@ section,
   /* Potong deskripsi di mobile */
   .member-desc {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
@@ -2382,7 +2381,6 @@ section,
 }
 
 .team-member.active .member-desc {
-  -webkit-line-clamp: unset;
   overflow: visible;
   max-height: 1000px; /* cukup besar agar semua baris terlihat */
 }
